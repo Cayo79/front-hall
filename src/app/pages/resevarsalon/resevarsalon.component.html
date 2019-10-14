@@ -1,0 +1,37 @@
+<div class="col-12">
+  <div class="card">
+    <div class="card-body">
+      <div class="card">
+        <form>
+          <div class="card-header">Calendario de Reservas</div>
+          <div *ngIf="listaAssigned?.length>0">
+            <table class="table" id="calendario-reserva">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">IdSala</th>
+                  <th scope="col">Inicio</th>
+                  <th scope="col">Fin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let reser of listaAssigned">
+                  <td class="text-center"> {{reser.id}} </td>
+                  <td class="text-center"> {{reser.idSala}} </td>
+                  <td class="text-center"> {{reser.beginDate | date:'medium'}} </td>
+                  <td class="text-center"> {{reser.endDate | date:'medium'}} </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-header"></div>
+          <div *ngIf="options">
+            <ng-fullcalendar #fullcalendar [options]="options" [(eventsModel)]="listaEvent"
+            (eventClick)="eventClick($event)" (dayClicked)="dateClick($event)">
+            </ng-fullcalendar>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
